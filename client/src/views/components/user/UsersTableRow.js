@@ -75,7 +75,7 @@ import { Button,  Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
                                 onClick={() => {
                                     this.deleteUser();
                                     this.toggleDanger();
-                                    window.location.href='/#/dashboard'
+                                    window.location.href='/dashboard'
                                 }}
                                 >حذف </Button>
                                 <Button color="secondary" onClick={this.toggleDanger}>الغاء</Button>

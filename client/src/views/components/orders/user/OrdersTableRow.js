@@ -9,8 +9,7 @@ import OrderDetails from './OrderDetails';
         super(props);
          
         this.state = {
-            order:[],
-            TotalPrice:[]
+            order:[]
           };
     }
 
@@ -19,7 +18,7 @@ import OrderDetails from './OrderDetails';
           .then(res => {
             this.setState({
               order: res.data
-            });        
+            });         
           })
           .catch((error) => {
             console.log(error);
@@ -27,7 +26,7 @@ import OrderDetails from './OrderDetails';
       }
 
     render() {
-
+      
         return (
             <tr>
                 <td>{this.props.obj.Created_at}</td>
@@ -35,11 +34,10 @@ import OrderDetails from './OrderDetails';
                 <td>{this.props.obj.user}</td>
                 <td>{ this.props.obj.products.map((product, index) => (<div key={index}>{product.product.name}</div>)) }</td>
                 <td>{this.props.obj.totalPrice}</td>
-                <td>{this.props.obj.Profit}</td>
                 <td>{this.props.obj.notes}</td>
                 <td>
                     <Button onClick={() => {
-                                    window.location.href='/order-details/'+this.props.obj.order_id
+                                    window.location.href='/user/order-details/'+this.props.obj.order_id
                                 }} className="mr-1">تفاصيل الفاتورة</Button></td>
                         </tr>
         );

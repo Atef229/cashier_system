@@ -3,11 +3,11 @@ import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const PrivateRoute = ({ component: Component, auth, ...rest }) => (
+const StrictAdminRoute = ({ component: Component, auth, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      auth.isAuthenticated === true ? (
+      !!localStorage.getItem("jwtTokenAdmin") ? (
         <Component {...props} />
       ) : (
         <Redirect to="/user/login-user" />
@@ -16,7 +16,7 @@ const PrivateRoute = ({ component: Component, auth, ...rest }) => (
   />
 );
 
-PrivateRoute.propTypes = {
+StrictAdminRoute.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
@@ -24,4 +24,5 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps)(PrivateRoute);
+export default connect(mapStateToProps)(StrictAdminRoute);
+

@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Col, Row, Table,Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
-import { Card, Button,CardColumns,ListGroup,Container} from 'react-bootstrap';
-import ProductsTableRow from './ProductsTableRow';
+import { Col, Row } from 'reactstrap';
+import { Card,CardColumns,ListGroup,Container} from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { getById } from '../../actions/ProductActions';
+import { getById } from '../../../actions/ProductActions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import Header from '../../../containers/DefaultLayout/DefaultHeader';
-import DefaultFooter from '../../../containers/DefaultLayout/DefaultFooter';
+import Header from '../../../../containers/user/DefaultLayoutUser/DefaultHeader';
+import DefaultFooter from '../../../../containers/user/DefaultLayoutUser/DefaultFooter';
 import {
   AppHeader,
   AppFooter,
@@ -20,7 +18,7 @@ import {
   AppSidebarMinimizer,
   AppSidebarNav,
 } from '@coreui/react';
-import navigation from '../../../_nav';
+import navigation from '../../../../nav_user';
 
 class GetProductDataById extends Component {
 
@@ -32,9 +30,6 @@ class GetProductDataById extends Component {
       product: [],
       errors:{}
     };
-
-    this.toggleDanger = this.toggleDanger.bind(this);
-    this.toggle = this.toggle.bind(this);
   }
 
   componentDidMount() {
@@ -52,26 +47,6 @@ class GetProductDataById extends Component {
       this.setState({ errors: nextProps.errors });
     }}
 
-    deleteUser() {
-      axios.delete('/api/product/delete/' + this.props.match.params.product_id)
-          .then((res) => 
-          console.log('Product successfully deleted!')
-          ).catch((error) => {
-              console.log(error)
-          })
-  }
-
-  toggle() {
-      this.setState({
-        modal: !this.state.modal,
-      });
-    }
-
-  toggleDanger() {
-      this.setState({
-        danger: !this.state.danger,
-      });
-    }
 
   render() {
     const { errors } = this.state;
@@ -99,7 +74,7 @@ class GetProductDataById extends Component {
                <Card.Img variant="top" src={product.image} fluid={true} alt="image" 
               //  "https://merntask.s3.us-east-2.amazonaws.com/download0.jpg"
                 onClick={() => {
-                window.location.href='/product-data/'+ product.product_id
+                window.location.href='/user/product-data/'+ product.product_id
             }} />
              <Card.Body>
                <Card.Title>
@@ -109,35 +84,13 @@ class GetProductDataById extends Component {
               <ListGroup.Item>
                <Card.Text>
                <h5 style={{ color: 'DodgerBlue' }}>كود الصنف : {product.product_id}</h5>
-               <h5 style={{ color: 'DarkCyan' }}>سعر الجمله : {product.Wholesale_price}</h5>
-               <h5>سعر البيع : {product.price}</h5>
-                <h5>الكمية : {product.quantity}</h5>
+               <h5>سعر القطعه : {product.price}</h5>
+                <h5>الكمية: {product.quantity}</h5>
                </Card.Text>
                </ListGroup.Item>
                </ListGroup>
                <ListGroup variant="flush">
               <ListGroup.Item>
-                <Button variant="success" size="sm"
-                              onClick={() => {
-                              window.location.href='/update-product/'+ product.product_id
-                          }}
-              >تعديل</Button> {' '}
-                              <Button variant="danger" size="sm" onClick={this.toggleDanger}>حذف</Button>
-              <Modal isOpen={this.state.danger} toggle={this.toggleDanger}
-                  className={'modal-danger ' + this.props.className}>
-              <ModalHeader toggle={this.toggleDanger}></ModalHeader>
-              <ModalBody><font size="6" text="center">هل تريد الحذف ؟</font></ModalBody>
-              <ModalFooter>
-                  <Button variant="danger" 
-                  onClick={() => {
-                      this.deleteUser();
-                      this.toggleDanger();
-                      window.location.href='/dashboard'
-                  }}
-                  >حذف </Button>
-                  <Button variant="secondary" onClick={this.toggleDanger}>الغاء</Button>
-              </ModalFooter>
-              </Modal>
               </ListGroup.Item>
             </ListGroup>
              </Card.Body>

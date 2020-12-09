@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+//import { HashRouter,Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 // Styles
 // CoreUI Icons Set
@@ -15,15 +16,14 @@ import './scss/style.css'
 
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './views/components/utils/setAuthToken';
-import { setCurrentUser, logoutUser } from './views/actions/authActions';
+import { setCurrentUser, logoutAdmin, logoutUser } from './views/actions/authActions';
 import { clearCurrentProfile } from './views/actions/AdminsActions';
 import { Provider } from 'react-redux';
 import store from './views/store';
 import PrivateRoute from './views/components/common/PrivateRoute';
+import StrictAdminRoute from './views/components/common/StrictAdminRoute';
 // Containers
 import { DefaultLayout } from './containers';
-// Pages
-import { Login, Page404, Page500, Register } from './views/Pages';
 
 
 // import { renderRoutes } from 'react-router-config';
@@ -51,7 +51,49 @@ import OrderDetails from './views/components/orders/OrderDetails';
 
 import ContactMe from './views/components/ContactMe';
 
-// Check for token
+import { DefaultLayoutUser } from './containers/user';
+
+import LoginUser from './views/components/auth/UserLogin';
+
+import GetProductDataByIdUser from './views/components/product/user/GetProductDataById';
+
+import AddExpensesUser from './views/components/expenses/user/AddExpenses';
+import GetExpensesUser from './views/components/expenses/user/GetExpenses';
+import AllExpensesUser from './views/components/expenses/user/Expensess';
+
+import AddCasherUser from './views/components/casher/user/casher';
+import billingUser from './views/components/casher/user/Billing';
+
+import GetOrdersUser from './views/components/orders/user/GetOrders';
+import AllOrdersUser from './views/components/orders/user/Orders';
+import OrderDetailsUser from './views/components/orders/user/OrderDetails';
+
+import ContactMeUser from './views/components/ContactMeUser';
+
+//import {AdminLogin} from './Admin';
+
+//Check for token Admin
+if (localStorage.jwtTokenAdmin) {
+  // Set auth token header auth
+  setAuthToken(localStorage.jwtTokenAdmin);
+  // Decode token and get user info and exp
+  const decoded = jwt_decode(localStorage.jwtTokenAdmin);
+  // Set user and isAuthenticated
+  store.dispatch(setCurrentUser(decoded));
+
+  // Check for expired token
+  const currentTime = Date.now() / 1000;
+  if (decoded.exp < currentTime) {
+    // Logout user
+    store.dispatch(logoutAdmin());
+    // TODO: Clear current Profile
+    store.dispatch(clearCurrentProfile());
+    // Redirect to login
+    window.location.href = '/login-admin';
+  }
+}
+
+// Check for token user
 if (localStorage.jwtToken) {
   // Set auth token header auth
   setAuthToken(localStorage.jwtToken);
@@ -68,7 +110,7 @@ if (localStorage.jwtToken) {
     // TODO: Clear current Profile
     store.dispatch(clearCurrentProfile());
     // Redirect to login
-    window.location.href = '/#/admin-login';
+    window.location.href = '/user/login-user';
   }
 }
 
@@ -76,28 +118,39 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-      <HashRouter>
+      <Router>
         <Switch>
+        <Route exact path="/user/login-user" name="Login Page" component={LoginUser} />
           <Route exact path="/login-admin" name="Login Page" component={AdminLogin} />
-          <PrivateRoute path="/register-user" name="Home" component={UserRegister} />
-          <PrivateRoute exact path="/all-users" name="Home"  component={AllUsers} /> 
-          <PrivateRoute exact path="/update-user-password/:_id" name="Home"  component={UpdateUserPassword} />
-          <PrivateRoute exact path="/add-product" name="Home"  component={AddProduct} /> 
-          <PrivateRoute exact path="/update-product/:product_id" name="Home"  component={UpdateProduct} />   
-          <PrivateRoute exact path="/product-data/:product_id" name="Home"  component={GetProductDataById} />
-          <PrivateRoute exact path="/add-expenses" name="Home"  component={AddExpenses} />
-          <PrivateRoute exact path="/get-expenses" name="Home"  component={GetExpenses} />
-          <PrivateRoute exact path="/all-expenses/" name="Home"  component={AllExpenses} />
-          <PrivateRoute exact path="/add-order" name="Home"  component={AddCasher} />
-          <PrivateRoute exact path="/billing" name="Home"  component={billing} />
-          <PrivateRoute exact path="/get-orders" name="Home"  component={GetOrders} />
-          <PrivateRoute exact path="/all-orders/" name="Home"  component={AllOrders} />
-          <PrivateRoute exact path="/order-details/:order_id" name="Home"  component={OrderDetails} />
-          <PrivateRoute exact path="/contact-me" name="Home"  component={ContactMe} />
-          <PrivateRoute path="/" name="Home" component={DefaultLayout} />
-          
+          <StrictAdminRoute path="/register-user" name="Home" component={UserRegister} />
+          <StrictAdminRoute exact path="/all-users" name="Home"  component={AllUsers} /> 
+          <StrictAdminRoute exact path="/update-user-password/:_id" name="Home"  component={UpdateUserPassword} />
+          <StrictAdminRoute exact path="/add-product" name="Home"  component={AddProduct} /> 
+          <StrictAdminRoute exact path="/update-product/:product_id" name="Home"  component={UpdateProduct} />
+          <PrivateRoute exact path="/user/product-data/:product_id" name="Home"  component={GetProductDataByIdUser} />   
+          <StrictAdminRoute exact path="/product-data/:product_id" name="Home"  component={GetProductDataById} />
+          <PrivateRoute exact path="/user/add-expenses" name="Home"  component={AddExpensesUser} />
+          <StrictAdminRoute exact path="/add-expenses" name="Home"  component={AddExpenses} />
+          <PrivateRoute exact path="/user/get-expenses" name="Home"  component={GetExpensesUser} />
+          <StrictAdminRoute exact path="/get-expenses" name="Home"  component={GetExpenses} />
+          <PrivateRoute exact path="/user/all-expenses/" name="Home"  component={AllExpensesUser} />
+          <StrictAdminRoute exact path="/all-expenses/" name="Home"  component={AllExpenses} />
+          <PrivateRoute exact path="/user/add-order" name="Home"  component={AddCasherUser} />
+          <StrictAdminRoute exact path="/add-order" name="Home"  component={AddCasher} />
+          <PrivateRoute exact path="/user/billing" name="Home"  component={billingUser} />
+          <StrictAdminRoute exact path="/billing" name="Home"  component={billing} />
+          <PrivateRoute exact path="/user/get-orders" name="Home"  component={GetOrdersUser} />
+          <StrictAdminRoute exact path="/get-orders" name="Home"  component={GetOrders} />
+          <PrivateRoute exact path="/user/all-orders/" name="Home"  component={AllOrdersUser} />
+          <StrictAdminRoute exact path="/all-orders/" name="Home"  component={AllOrders} />
+          <PrivateRoute exact path="/user/order-details/:order_id" name="Home"  component={OrderDetailsUser} />
+          <StrictAdminRoute exact path="/order-details/:order_id" name="Home"  component={OrderDetails} />
+          <PrivateRoute exact path="/user/contact-me" name="Home"  component={ContactMeUser} />
+          <StrictAdminRoute exact path="/contact-me" name="Home"  component={ContactMe} />
+          <PrivateRoute path="/user" name="Home" component={DefaultLayoutUser} />
+          <StrictAdminRoute path="/" name="Home" component={DefaultLayout} />
         </Switch>
-      </HashRouter>
+      </Router>
       </Provider>
     );
   }

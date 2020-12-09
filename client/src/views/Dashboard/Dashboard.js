@@ -69,7 +69,7 @@ toggleDanger() {
                <Card.Img variant="top" src={product.image} fluid={true} alt="image" 
               //  "https://merntask.s3.us-east-2.amazonaws.com/download0.jpg"
                 onClick={() => {
-                window.location.href='/#/product-data/'+ product.product_id
+                window.location.href='/product-data/'+ product.product_id
             }} />
              <Card.Body>
                <Card.Title>
@@ -90,7 +90,7 @@ toggleDanger() {
               <ListGroup.Item>
                 <Button variant="success" size="sm"
                               onClick={() => {
-                              window.location.href='/#/update-product/'+ product.product_id
+                              window.location.href='/update-product/'+ product.product_id
                           }}
               >تعديل</Button> {' '}
               {/* <Button variant="danger" size="sm" onClick={this.toggleDanger}>حذف</Button>
@@ -103,7 +103,7 @@ toggleDanger() {
                   onClick={() => {
                       this.deleteUser();
                       this.toggleDanger();
-                      window.location.href='/#/dashboard'
+                      window.location.href='/dashboard'
                   }}
                   >حذف </Button>
                   <Button variant="secondary" onClick={this.toggleDanger}>الغاء</Button>

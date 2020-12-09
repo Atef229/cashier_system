@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {CardHeader,Label, FormGroup, FormFeedback, Button, Card, CardBody, Col, Container, Form, Input, Table, Modal, ModalBody, ModalFooter, ModalHeader, Row } from 'reactstrap';
+import {Label, FormGroup, Button, Card, CardBody, Form, Input, Table} from 'reactstrap';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import OrderTableRow from './OrderTableRow';
-import { addorder } from '../../actions/addActions';
-import  Billing  from './Billing';
+import { addorder } from '../../../actions/addActions';
 
 class Orders extends Component {
 
@@ -38,7 +37,7 @@ class Orders extends Component {
       }
 
       componentDidMount() {
-        axios.get('api/cart/all')
+        axios.get('/api/cart/all')
           .then(res => {
             this.setState({
               order: res.data
@@ -49,7 +48,7 @@ class Orders extends Component {
             console.log(error);
           })
 
-          axios.get('api/cart/carts')
+          axios.get('/api/cart/carts')
           .then(res => {
             this.setState({
               orders: res.data
@@ -155,7 +154,7 @@ class Orders extends Component {
                       onChange={this.onChange}
                       />
                       </FormGroup>
-                <Button type="submit" active block color="info" block onClick={() => window.location.href='/billing'} >أضافة الاوردر</Button>
+                <Button type="submit" active block color="info" block onClick={() => window.location.href='/user/billing'} >أضافة الاوردر</Button>
                   </Form>
               </CardBody>
             </Card>

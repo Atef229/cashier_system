@@ -4,9 +4,9 @@ import {Badge, UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle,
 import DefaultHeaderDropdown  from './DefaultHeaderDropdown'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { logoutAdmin } from '../../views/actions/authActions';
+import { logoutUser } from '../../../views/actions/authActions';
 import { Link } from 'react-router-dom';
-import { clearCurrentProfile } from '../../views/actions/AdminsActions';
+import { clearCurrentProfile } from '../../../views/actions/AdminsActions';
 import { AppAsideToggler, AppNavbarBrand, AppSidebarToggler,AppSidebarHeader, } from '@coreui/react';
 
 const propTypes = {
@@ -21,7 +21,7 @@ class DefaultHeader extends Component {
   onLogoutClick(e) {
     e.preventDefault();
     this.props.clearCurrentProfile();
-    this.props.logoutAdmin();
+    this.props.logoutUser();
   }
 
   render() {
@@ -52,7 +52,7 @@ class DefaultHeader extends Component {
       <React.Fragment>
         <Nav className="d-md-down-none" navbar>
           <NavItem className="px-3">
-            <NavLink to="/dashboard" className="nav-link" ><h4>Joker</h4></NavLink>
+            <NavLink to="/user/dashboard" className="nav-link" ><h4>Joker</h4></NavLink>
           </NavItem>
           
           <AppSidebarToggler className="d-lg-none" display="md" mobile />
@@ -78,7 +78,7 @@ DefaultHeader.propTypes = propTypes;
 DefaultHeader.defaultProps = defaultProps;
 
 DefaultHeader.propTypes = {
-  logoutAdmin: PropTypes.func.isRequired,
+  logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
 
@@ -86,7 +86,7 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { logoutAdmin, clearCurrentProfile })(
+export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })(
   DefaultHeader
 );
 

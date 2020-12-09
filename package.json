@@ -8,8 +8,7 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
-    "client-user": "npm start --prefix client-user",
-    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run client-user\""
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "ahmed atef",
   "license": "ISC",

@@ -7,8 +7,8 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import OrderDetailsTableRow from './OrderDetailsTableRow';
-import Header from '../../../containers/DefaultLayout/DefaultHeader';
-import DefaultFooter from '../../../containers/DefaultLayout/DefaultFooter';
+import Header from '../../../../containers/user/DefaultLayoutUser/DefaultHeader';
+import DefaultFooter from '../../../../containers/user/DefaultLayoutUser/DefaultFooter';
 import {
   AppHeader,
   AppFooter,
@@ -19,7 +19,7 @@ import {
   AppSidebarMinimizer,
   AppSidebarNav,
 } from '@coreui/react';
-import navigation from '../../../_nav';
+import navigation from '../../../../nav_user';
 
 class OrderDetails extends Component {
 
@@ -102,8 +102,8 @@ class OrderDetails extends Component {
             <AppSidebarNav navConfig={navigation} {...this.props} />
             <AppSidebarFooter />
             <AppSidebarMinimizer />
-          </AppSidebar> 
-        <div className="animated fadeIn  justify-content-center"className="main">
+          </AppSidebar>  
+          <div className="animated fadeIn app row  col-md-9 m-auto justify-content-center"className="main">
         <Card className="bg-dark text-white">
           <Card.Img src={'../../assets/img/joker.jpg'} //"https://merntask.s3.us-east-2.amazonaws.com/123456.jpg"
           alt="Card image"  height="350" width="130" />

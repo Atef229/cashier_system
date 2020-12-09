@@ -3,6 +3,7 @@ import Loadable from 'react-loadable'
 
 import CodeEditors from './views/Editors/CodeEditors'
 import DefaultLayout from './containers/DefaultLayout';
+import DefaultLayoutUser from './containers/user/DefaultLayoutUser';
 
 function Loading() {
   return <div>Loading...</div>;
@@ -138,6 +139,11 @@ const Dashboard = Loadable({
   loading: Loading,
 });
 
+const DashboardUser = Loadable({
+  loader: () => import('./views/Dashboard/user/DashboardUser'),
+  loading: Loading,
+});
+
 // issue with mispalced position of cm value for acync load
 // const CodeEditors = Loadable({
 //   loader: () => import('./views/Editors/CodeEditors'),
@@ -243,7 +249,9 @@ const Widgets = Loadable({
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', name: 'Home', component: DefaultLayout, exact: true },
+  { path: '/user', name: 'Home', component: DefaultLayoutUser, exact: true },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
+  { path: '/user/dashboard', name: 'Dashboard', component: DashboardUser },
   { path: '/theme', name: 'Theme', component: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', component: Colors },
   { path: '/theme/typography', name: 'Typography', component: Typography },

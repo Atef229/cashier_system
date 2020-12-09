@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { logoutUser,logoutAdmin } from '../../views/actions/authActions';
-import { clearCurrentProfile } from '../../views/actions/AdminsActions';
+import { logoutUser } from '../../../views/actions/authActions';
+import { clearCurrentProfile } from '../../../views/actions/AdminsActions';
 import { Badge, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Progress } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
@@ -34,7 +34,6 @@ class DefaultHeaderDropdown extends Component {
     e.preventDefault();
     this.props.clearCurrentProfile();
     this.props.logoutUser();
-    this.props.logoutAdmin();
   }
 
   toggle() {
@@ -92,7 +91,6 @@ DefaultHeaderDropdown.defaultProps = defaultProps;
 
 DefaultHeaderDropdown.propTypes = {
   logoutUser: PropTypes.func.isRequired,
-  logoutAdmin: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
 
@@ -100,6 +98,6 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { logoutUser,logoutAdmin, clearCurrentProfile })(
+export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })(
   DefaultHeaderDropdown
 );

@@ -4,8 +4,8 @@ import { CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
 import { Card } from 'react-bootstrap';
 //import queryString from 'query-string';
 import OrdersTableRow from './OrdersTableRow';
-import Header from '../../../containers/DefaultLayout/DefaultHeader';
-import DefaultFooter from '../../../containers/DefaultLayout/DefaultFooter';
+import Header from '../../../../containers/user/DefaultLayoutUser/DefaultHeader';
+import DefaultFooter from '../../../../containers/user/DefaultLayoutUser/DefaultFooter';
 import {
   AppHeader,
   AppFooter,
@@ -16,16 +16,14 @@ import {
   AppSidebarMinimizer,
   AppSidebarNav,
 } from '@coreui/react';
-import navigation from '../../../_nav';
+import navigation from '../../../../nav_user';
 
 export default class Orders extends Component {
 
     constructor(props) {
       super(props)
       this.state = {
-        orders: [],
-        totalPrice:[],
-        totalProfit:[],
+        orders: []
       };
       
     }
@@ -35,11 +33,11 @@ export default class Orders extends Component {
     componentDidMount() {
       // let params = queryString.parse(this.props.location.search)
       // console.log(params)
-      axios.get('/api/order'+ this.props.location.search)
+      axios.get('/api/order/'+ this.props.location.search)
         .then(res => {
           this.setState({
             orders: res.data
-          }); 
+          });     
         })
         .catch((error) => {
           console.log(error);
@@ -73,29 +71,17 @@ export default class Orders extends Component {
     (sum,total) => sum + total ,
     0,
     )
-
-    //get total Profit in array
-    totalProfit = () =>
-    this.state.orders.map(function (order) {
-        return order.Profit;
-    })
-
-    //count total Profit
-    TotalProfit = () =>
-    this.totalProfit().reduce(
-    (sum,total) => sum + total ,
-    0,
-    )
+  
   
     render() {
   
       return (
         <div className="app">
         <AppHeader> 
-         <Header fixed/>
+         <Header />
       </AppHeader>
       <div className="app-body">
-          <AppSidebar  display="lg">
+          <AppSidebar display="lg">
             <AppSidebarHeader />
             <AppSidebarForm />
             <AppSidebarNav navConfig={navigation} {...this.props} />
@@ -124,7 +110,6 @@ export default class Orders extends Component {
                     <th>اسم المستخدم</th>
                     <th>الأصناف</th>
                     <th>اجمالى المبيعات</th>
-                    <th>اجمالى الربح</th>
                     <th>الملاحظات</th>
                     <th>تفاصيل الفاتورة</th>
                   </tr>
@@ -136,7 +121,7 @@ export default class Orders extends Component {
                   <td></td>
                   <td></td>
                   <td style={{ color: 'DodgerBlue' }}>{this.TotalPrice()}</td>
-                  <td style={{ color: 'ForestGreen' }}>{this.TotalProfit()}</td>
+                  <td></td>
                   <td></td>
                   <td></td>
                   </tbody>

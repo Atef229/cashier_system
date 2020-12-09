@@ -40,7 +40,7 @@ export const loginAdmin = userData => dispatch => {
       // Save to localStorage
       const { token } = res.data;
       // Set token to ls
-      localStorage.setItem('jwtToken', token);
+      localStorage.setItem('jwtTokenAdmin', token);
       // Set token to Auth header
       setAuthToken(token);
       // Decode token to get user data
@@ -86,6 +86,16 @@ export const setCurrentUser = decoded => {
     type: SET_CURRENT_USER,
     payload: decoded
   };
+};
+
+// Log Admin out
+export const logoutAdmin = () => dispatch => {
+  // Remove token from localStorage
+  localStorage.removeItem('jwtTokenAdmin');
+  // Remove auth header for future requests
+  setAuthToken(false);
+  // Set current user to {} which will set isAuthenticated to false
+  dispatch(setCurrentUser({}));
 };
 
 // Log user out
