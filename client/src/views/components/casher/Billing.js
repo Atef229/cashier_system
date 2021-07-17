@@ -20,7 +20,6 @@ import {
   AppSidebarNav,
 } from '@coreui/react';
 import navigation from '../../../_nav';
-import ReactToPrint from 'react-to-print';
 
 class Billing extends Component {
 
@@ -36,7 +35,7 @@ class Billing extends Component {
   
   
     componentDidMount() {
-      axios.get('api/order/last')
+      axios.get('/api/order/last')
       .then(res => {
         this.setState({
           orders: [res.data]
@@ -48,7 +47,7 @@ class Billing extends Component {
           console.log(error);
         })
 
-        axios.get('api/order/last')
+        axios.get('/api/order/last')
         .then(res => {
           this.setState({
             order: res.data
@@ -157,8 +156,8 @@ class Billing extends Component {
               <CardBody>
                 {/* <div> */}
                 <div style={style1}>
-                <h6 style={style2}>Joker</h6>
-                <h7>فرع العاشر من رمضان</h7>
+                <h6 style={style2}>Hexacode</h6>
+                <h7>الفرع</h7>
                 <br />
                 <h7>رقم الفاتورة: {this.state.order.order_id}</h7>
                 <br />

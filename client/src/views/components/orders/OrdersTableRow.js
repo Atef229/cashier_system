@@ -36,7 +36,7 @@ import OrderDetails from './OrderDetails';
                 <td>{ this.props.obj.products.map((product, index) => (<div key={index}>{product.product.name}</div>)) }</td>
                 <td>{this.props.obj.totalPrice}</td>
                 <td>{this.props.obj.Profit}</td>
-                <td>{this.props.obj.notes}</td>
+                {/* <td>{this.props.obj.notes}</td> */}
                 <td>
                     <Button onClick={() => {
                                     window.location.href='/order-details/'+this.props.obj.order_id

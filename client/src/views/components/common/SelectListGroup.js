@@ -18,6 +18,7 @@ const SelectListGroup = ({ name, value, error, info, onChange, options }) => {
         value={value}
         onChange={onChange}
       >
+
         {selectOptions}
       </select>
       {info && <small className="form-text text-muted">{info}</small>}

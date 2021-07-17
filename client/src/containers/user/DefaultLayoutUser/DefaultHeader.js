@@ -50,9 +50,9 @@ class DefaultHeader extends Component {
 
     return (
       <React.Fragment>
-        <Nav className="d-md-down-none" navbar>
+        <Nav className="ml" navbar>
           <NavItem className="px-3">
-            <NavLink to="/user/dashboard" className="nav-link" ><h4>Joker</h4></NavLink>
+            <NavLink to="/user/dashboard" className="nav-link" ><h4>Hexacode</h4></NavLink>
           </NavItem>
           
           <AppSidebarToggler className="d-lg-none" display="md" mobile />

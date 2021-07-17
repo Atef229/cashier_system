@@ -42,7 +42,7 @@ class DashboardUser extends Component {
             <CardColumns>
       {this.state.products.map((product) => (
         <Card className="m-4" key={product.id} style={{ width: "20rem" }}>
-               <Card.Img variant="top" src={product.image} fluid={true} alt="image"
+               <Card.Img variant="top" src={product.image} fluid={true} alt="image" height="350" width="350"
               //  "https://merntask.s3.us-east-2.amazonaws.com/download0.jpg"
                 onClick={() => {
                 window.location.href='/user/product-data/'+ product.product_id

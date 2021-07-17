@@ -118,8 +118,8 @@ class OrderDetails extends Component {
               <CardBody>
                 {/* <div> */}
                 <div style={style1}>
-                <h6 style={style2}>Joker</h6>
-                <h7>فرع العاشر من رمضان</h7>
+                <h6 style={style2}>Hexacode</h6>
+                <h7>الفرع</h7>
                 <br />
                 <h7>رقم الفاتورة: {this.state.order.order_id}</h7>
                 <br />

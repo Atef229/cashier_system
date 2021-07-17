@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CardBody, CardFooter, Col, Row } from 'reactstrap';
+import { CardBody, CardFooter, Col, Row, Button } from 'reactstrap';
 import { Card } from 'react-bootstrap';
 import Moment from 'react-moment';
 import Header from '../../containers/DefaultLayout/DefaultHeader';
@@ -57,17 +57,22 @@ class ContactME extends Component {
           {/* <Col md="9" lg="7" xl="4"> */}
           <Col xs="9" sm="6" md="4">
             <Card className="mx-3" style={style}>
-            <div  id="divToPrint">
+            <div>
               <CardBody>
                 {/* <div> */}
                 <div style={style1}>
-                <h6 style={style2}>Joker System</h6>
+                <h6 style={style2}>Cashier System</h6>
                 <br />
-                <h7 style={{ color: 'DarkOrange' }}>Created by : Ahmed Atef</h7>
+                <h7>Created by : Hexacode</h7>
                 <br />
-                <h7 style={{ color: 'DarkOrange' }}>Email : ahmedatef2291996@gmail.com</h7>
+                <h7>Email : info@hexacode.net</h7>
                 <br />
-                <h7 style={{ color: 'DarkOrange' }}>Mobile Number : 01208907852</h7>
+                <h7>Website : <a href="https://hexacode.net">hexacode.net</a></h7>
+                <br />
+                <br />
+                <Button size="lg" className="btn-linkedin btn-brand mr-1 mb-1" onClick={() => {window.location.href="https://www.linkedin.com/company/hexacodenet/"}}><i className="fa fa-linkedin"></i></Button>
+                <Button size="lg" className="btn-twitter btn-brand mr-1 mb-1" onClick={() => {window.location.href="https://twitter.com/hexacode_net"}}><i className="fa fa-twitter"></i></Button>
+                <Button size="lg" className="btn-facebook btn-brand mr-1 mb-1" onClick={() => {window.location.href="https://www.facebook.com/hexacode.net"}}><i className="fa fa-facebook"></i></Button>
                 </div>
               </CardBody>
               </div>

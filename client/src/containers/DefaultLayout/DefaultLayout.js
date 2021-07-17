@@ -37,7 +37,7 @@ class DefaultLayout extends Component {
           <DefaultHeader onLogout={e=>this.signOut(e)}/>
         </AppHeader>
         <div className="app-body">
-          <AppSidebar fixed display="lg">
+          <AppSidebar fixed display="lg"  >
             <AppSidebarHeader />
             <AppSidebarForm />
             <AppSidebarNav navConfig={navigation} {...this.props} />

@@ -30,7 +30,7 @@ export default class Expenses extends Component {
   
   
     componentDidMount() {
-      axios.get('api/expenses/all'+ this.props.location.search)
+      axios.get('/api/expenses/all'+ this.props.location.search)
         .then(res => {
           this.setState({
             expensess: res.data

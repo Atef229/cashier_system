@@ -15,8 +15,8 @@ class DefaultFooter extends Component {
 
     return (
       <React.Fragment>
-        <span><a href="/dashboard">Joker</a> &copy; {new Date().getFullYear()} </span>
-        <span className="ml-auto">Powered by <a href="/user/contact-me">Ahmed Atef</a></span>
+        <span><a href="/dashboard">Hexacode</a> &copy; {new Date().getFullYear()} </span>
+        <span className="ml-auto">Powered by <a href="/user/contact-me">Hexacode</a></span>
       </React.Fragment>
     );
   }

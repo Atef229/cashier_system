@@ -1,6 +1,6 @@
 {
-  "short_name": "Joker",
-  "name": "Joker System",
+  "short_name": "cashier",
+  "name": "cashier System",
   "icons": [
     {
       "src": "./assets/favicon.png",

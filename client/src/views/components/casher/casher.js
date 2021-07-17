@@ -6,6 +6,7 @@ import { withRouter,Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addCart } from '../../actions/addActions';
 import SelectListGroup from '../common/SelectListGroup';
+import SelectListGroupProduct from '../common/SelectListGroupProduct';
 import axios from 'axios';
 import Header from '../../../containers/DefaultLayout/DefaultHeader';
 import DefaultFooter from '../../../containers/DefaultLayout/DefaultFooter';
@@ -78,9 +79,17 @@ class AddCart extends Component {
     //this.state.quantity= `${e.target.value}`
   }
 
+  // totalPrice = () =>
+  // this.state.productPrice.reduce(
+  //   (sum, product) => sum + this.state.quantity * product.price,
+  //   0,
+  //   console.log(this.state.quantity),
+  //   console.log(this.state.price)
+  // )
+
   totalPrice = () =>
   this.state.productPrice.reduce(
-    (sum, product) => sum + this.state.quantity * product.price,
+    (sum, product) => sum + this.state.quantity * this.state.price,
     0,
     console.log(this.state.quantity),
     console.log(this.state.price)
@@ -164,13 +173,13 @@ window.location.reload();
                   <Form noValidate onSubmit={this.onSubmit}>
                   <FormGroup>
                       <Label htmlFor="text">الصنف</Label>
-                      <SelectListGroup
+                      <SelectListGroupProduct
                         placeholder="الصنف"
                         name="product"
                         value={this.state.product}
                         onChange={this.onChange}
                         options={options}
-                        error={errors.product}                
+                        error={errors.product}              
                         />
                       <FormFeedback>{errors.cost}</FormFeedback>
                       </FormGroup>
@@ -190,12 +199,13 @@ window.location.reload();
                       <FormGroup>
                       <Label htmlFor="text">سعر القطعه</Label>
                              {/* {this.state.productPrice.price}  */}
-                        <SelectListGroup
+                        {/* <SelectListGroup */}
+                        <Input
                         placeholder="سعر القطعه"
                         name="price"
                         value={this.state.price}
                         onChange={this.onChange}
-                        options={options1}
+                        //options={options1}
                         error={errors.price}                
                         />
                       </FormGroup>

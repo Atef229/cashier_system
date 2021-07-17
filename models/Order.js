@@ -63,6 +63,18 @@ const OrderSchema = new Schema({
   notes:{
     type: String
   },
+  client_name:{
+    type: String
+  },
+  client_number:{
+    type: String
+  },
+  client_address:{
+    type: String
+  },
+  order_state:{
+    type: String
+  },
   Created_at:{
       type: String
     }

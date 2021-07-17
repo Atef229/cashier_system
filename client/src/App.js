@@ -47,6 +47,8 @@ import billing from './views/components/casher/Billing';
 
 import GetOrders from './views/components/orders/GetOrders';
 import AllOrders from './views/components/orders/Orders';
+import GetOrderById from './views/components/orders/GetOrderById';
+import GetOrderDataById from './views/components/orders/GetOrderDataById';
 import OrderDetails from './views/components/orders/OrderDetails';
 
 import ContactMe from './views/components/ContactMe';
@@ -143,6 +145,8 @@ class App extends Component {
           <StrictAdminRoute exact path="/get-orders" name="Home"  component={GetOrders} />
           <PrivateRoute exact path="/user/all-orders/" name="Home"  component={AllOrdersUser} />
           <StrictAdminRoute exact path="/all-orders/" name="Home"  component={AllOrders} />
+          <StrictAdminRoute exact path="/get-order-by-id/" name="Home"  component={GetOrderById} />
+          <StrictAdminRoute exact path="/get-order-data-by-id/:order_id" name="Home"  component={GetOrderDataById} />
           <PrivateRoute exact path="/user/order-details/:order_id" name="Home"  component={OrderDetailsUser} />
           <StrictAdminRoute exact path="/order-details/:order_id" name="Home"  component={OrderDetails} />
           <PrivateRoute exact path="/user/contact-me" name="Home"  component={ContactMeUser} />

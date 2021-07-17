@@ -6,6 +6,7 @@ import { withRouter,Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addCart } from '../../../actions/addActions';
 import SelectListGroup from '../../common/SelectListGroup';
+import SelectListGroupProduct from '../../common/SelectListGroupProduct';
 import axios from 'axios';
 import Header from '../../../../containers/user/DefaultLayoutUser/DefaultHeader';
 import DefaultFooter from '../../../../containers/user/DefaultLayoutUser/DefaultFooter';
@@ -164,7 +165,7 @@ window.location.reload();
                   <Form noValidate onSubmit={this.onSubmit}>
                   <FormGroup>
                       <Label htmlFor="text">الصنف</Label>
-                      <SelectListGroup
+                      <SelectListGroupProduct
                         placeholder="الصنف"
                         name="product"
                         value={this.state.product}

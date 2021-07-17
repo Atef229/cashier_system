@@ -136,7 +136,7 @@ class Orders extends Component {
                   <th>السعر</th>
                     <th>الكمية</th>
                     <th>الاجمالى</th>
-                    {/* <th>حذف</th> */}
+                    <th>حذف</th>
                   </tr>
                   </thead>
                   <tbody>

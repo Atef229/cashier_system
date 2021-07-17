@@ -19,7 +19,7 @@ import { Button,  Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
     }
 
     componentDidMount() {
-        axios.get('api/cart/all')
+        axios.get('/api/cart/all')
           .then(res => {
             this.setState({
               order: res.data
@@ -32,8 +32,8 @@ import { Button,  Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
       }
 
 
-    deleteProduct() {
-        axios.delete('api/cart/delete/' + this.props.obj._id)
+      deleteProduct() {
+        axios.delete('/api/cart/delete')
             .then((res) => 
             console.log('Product successfully deleted!')
             ).catch((error) => {
@@ -41,7 +41,7 @@ import { Button,  Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
             })
 
     // Redirect to Dashboard
-       //this.props.history.push('/dashboard' );
+    window.location.href='/add-order';
     }
     
 
@@ -70,10 +70,10 @@ import { Button,  Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
         return (
             <tr>
                 <td>{ this.props.obj.items.map((item, index) => (<div key={index}>{item.product.name}</div>)) }</td>
-                <td>{ this.props.obj.items.map((item, index) => (<div key={index}>{item.product.price}</div>)) }</td>
+                {/* <td>{ this.props.obj.items.map((item, index) => (<div key={index}>{item.product.price}</div>)) }</td> */}
                 <td>{ this.props.obj.items.map((item, index) => (<div key={index}>{item.quantity}</div>)) }</td>
                 <td>{ this.props.obj.items.map((item, index) => (<div key={index}>{item.totalPrice}</div>)) }</td>
-                {/* <td>
+                <td>
                     <Button color="danger" onClick={this.toggleDanger} className="mr-1">حذف</Button></td>
                             <Modal isOpen={this.state.danger} toggle={this.toggleDanger}
                                 className={'modal-danger ' + this.props.className}>
@@ -84,12 +84,12 @@ import { Button,  Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
                                 onClick={() => {
                                     this.deleteProduct();
                                     this.toggleDanger();
-                                    window.location.href='/dashboard'
+                                    window.location.href='/add-order'
                                 }}
                                 >حذف </Button>
                                 <Button color="secondary" onClick={this.toggleDanger}>الغاء</Button>
                             </ModalFooter>
-                            </Modal> */}
+                            </Modal>
                         </tr>
         );
     }

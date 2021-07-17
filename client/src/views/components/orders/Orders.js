@@ -125,7 +125,7 @@ export default class Orders extends Component {
                     <th>الأصناف</th>
                     <th>اجمالى المبيعات</th>
                     <th>اجمالى الربح</th>
-                    <th>الملاحظات</th>
+                    <th>Remark</th>
                     <th>تفاصيل الفاتورة</th>
                   </tr>
                   </thead>

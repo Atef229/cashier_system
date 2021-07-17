@@ -4,12 +4,14 @@ const multer = require('multer');
 const path = require('path');
 const uuid = require('uuid');
 const moment = require('moment');
+var {url}=require("../../config/config");
 
 // Load User model
 const Product = require('../../models/Product');
 
 // Load Input Validation
 const validateAddInput = require('../../validation/add-product');
+const { log } = require('console');
 
 // @route   GET api/user/test
 // @desc    Tests users route
@@ -21,13 +23,16 @@ router.get('/test', (req, res) => res.json({ msg: 'Products Works' }));
 // @access  Public
 var storage = multer.diskStorage({
     destination: (request, file, callback) => {
-      callback(null, __dirname +'/../../uploads');
+      callback(null, __dirname +'/../../public/uploads');
     },
     filename: (request, file, callback) => {
    
-      callback(null, "product-img" + uuid.v1()+ path.extname(file.originalname))
+      callback(null, "product-img" + uuid.v1()+path.extname(file.originalname))
     }
+
+    //filename:
   });
+  //console.log(filename);
   
   var upload = multer({ storage: storage })
   let file = upload.single('Image')
@@ -54,7 +59,8 @@ var storage = multer.diskStorage({
                 price: req.body.price,
                 Wholesale_price: req.body.Wholesale_price,
                 quantity: req.body.quantity,
-                image:req.file.path,
+                image: `${url}`+'/uploads/'+ req.file.filename,
+                //image:req.file.path,
                 Created_at:moment().format('L'+' '+'LTS')
               });
                //console.log(image);

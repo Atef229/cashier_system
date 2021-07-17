@@ -11,5 +11,6 @@ export const GET_USERS = 'GET_USERS';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const GET_ORDERS = 'GET_ORDERS';
+export const GET_ORDER_BY_ID = 'GET_ORDER_BY_ID';
 export const GET_EXPENSES = 'GET_EXPENSES';
 export const GET_CART = 'GET_CART';

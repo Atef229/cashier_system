@@ -67,7 +67,7 @@ router.post('/',(req, res) => {
 // @access  Public
 //current use api
 router.post('/add', (req, res) => {
-  let order_id=parseInt((Math.random() * 100000000), 10);
+  let order_id=parseInt((Math.random() * 10000), 10);
   Order.create({
     order_id:order_id,
     user: req.body.user,
@@ -75,6 +75,10 @@ router.post('/add', (req, res) => {
     products: req.body.products,
     totalPrice: req.body.totalPrice,
     Profit: req.body.Profit,
+    client_name: req.body.client_name,
+    client_number: req.body.client_number,
+    client_address: req.body.client_address,
+    order_state: req.body.order_state,
     Created_at:moment().format('L'+' '+'LTS')
   })
     .then(products => res.json(products))
